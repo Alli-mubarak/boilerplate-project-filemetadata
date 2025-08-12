@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "API project for freeCodeCamp",
   "main": "index.js",
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "null",
   "scripts": {
     "start": "node index.js"
   },
