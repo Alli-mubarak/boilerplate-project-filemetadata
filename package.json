@@ -2,7 +2,7 @@
   "name": "file_metadata",
   "version": "0.0.1",
   "description": "API project for freeCodeCamp",
-  "franework": null
+  "franework": null,
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
