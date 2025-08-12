@@ -2,7 +2,7 @@ var express = require('express');
 var cors = require('cors');
 require('dotenv').config()
 const multer = require('multer');
-//const fs = require('fs').promises;
+const fs = require('fs').promises;
 const path = require('path');
 var app = express();
 
@@ -52,7 +52,7 @@ setTimeout(() => {
 })
 
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 app.listen(port, function () {
   console.log('Your app is listening on port ' + port)
 });
