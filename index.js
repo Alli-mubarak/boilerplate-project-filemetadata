@@ -28,29 +28,7 @@ app.use( function middleware(req, res, next){
 
     // Create the Multer upload instance
     const upload = multer({ storage: storage });
-let fileSize = '';
-  async function getImageDetails(imageFileName) {
-          const imagePath = path.join(__dirname, `/uploads/${imageFileName}`); // __dirname is the current directory
-          try {
-              const stats = await fs.stat(imagePath);
-              // console.log(stats.size);
-              fileSize = stats.size
-              // console.log('File Size:', stats.size, 'bytes');
-              // console.log('Creation Time:', stats.birthtime);
-              // console.log('Last Modified Time:', stats.mtime);
-  
-              
-              // For image dimensions, you might need a third-party library like 'sharp' or 'jimp'
-              // Example with 'sharp':
-              // const sharp = require('sharp');
-              // const metadata = await sharp(imagePath).metadata();
-              // console.log('Image Width:', metadata.width);
-              // console.log('Image Height:', metadata.height);
-  
-          } catch (error) {
-              console.error('Error reading image details:', error);
-          }
-      }
+
 
 app.use(cors());
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -60,15 +38,13 @@ app.get('/', function (req, res) {
 });
 
 app.post("/api/fileanalyse", upload.single('upfile'),(req, res)=>{
-  const file =req.file? req.file.filename :"No file uploaded";
-getImageDetails(file);
-const  imgtype = file.split('.')[1];
+  const file =req.file;
 
 setTimeout(() => {
    res.json({
-    name: file,
-    type: `img/${imgtype}`,
-    size: fileSize
+    name: file.originalname,
+    type: file.mimetype,
+    size: file.size
   }) 
 }, 3000);
 
